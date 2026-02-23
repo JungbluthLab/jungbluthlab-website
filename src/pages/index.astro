@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/global/Nav.astro';
+import Footer from '../components/global/Footer.astro';
+import AboutLabSwitcher from '../components/sections/AboutLabSwitcher.astro';
+import { Image } from 'astro:assets';
+
+import heroImg from '../assets/images/hero/rtc-aerial.jpg';
+import logoImg from '../assets/images/logos/jungbluth-lab-logo.png';
+
+---
+
+<BaseLayout title="Jungbluth Lab — Michelle & Sean Jungbluth">
+  <Nav />
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <Image
+      src={heroImg}
+      alt="Aerial view of the research campus"
+      class="absolute inset-0 w-full h-full object-cover"
+      widths={[800, 1200, 1920]}
+      sizes="100vw"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20 text-center">
+      <div class="flex items-center justify-center gap-4">
+        <Image src={logoImg} alt="Jungbluth Lab logo" width={80} height={80} class="w-20 h-20 drop-shadow-lg" />
+        <div class="text-left">
+          <h1 class="font-heading text-4xl md:text-5xl font-bold text-white tracking-tight drop-shadow-lg">
+            Jungbluth Lab
+          </h1>
+          <p class="mt-1 text-lg md:text-xl text-gray-100 drop-shadow">
+            Exploring ocean life from zooplankton ecology to deep-sea microbial genomics.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a
+          href="/lab"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lab-600 text-white font-medium hover:bg-lab-700 transition-colors shadow-lg"
+        >
+          Lab Overview
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <AboutLabSwitcher />
+
+  <!-- Photo Strip -->
+  <section class="py-12 bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-2xl font-bold text-gray-900 text-center">From the Field</h2>
+      <p class="mt-2 text-gray-600 text-center">Research adventures on land and sea</p>
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <Image src={(await import('../assets/images/photos/zooplankton-field-sample-jar.jpg')).default} alt="Zooplankton field sample jar" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/photos/rv-falkor.jpg')).default} alt="R/V Falkor research vessel" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/photos/siphonophore-9.jpg')).default} alt="Siphonophore under the microscope" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/research/deep-sea-octopus-on-borehole.jpg')).default} alt="Deep-sea octopus on a borehole observatory" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/photos/delta-boat-sunrise.jpg')).default} alt="Estuary fieldwork at sunrise" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/photos/pteropod-microscopy-edited.jpg')).default} alt="Pteropod shell under microscopy" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/photos/cpatel-questuary-2019.jpg')).default} alt="Student collecting plankton samples on R/V Questuary" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+        <Image src={(await import('../assets/images/photos/zooplankton-under-microscope-edited.jpg')).default} alt="Zooplankton under the microscope" class="rounded-lg object-cover w-full aspect-square" width={400} height={400} />
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

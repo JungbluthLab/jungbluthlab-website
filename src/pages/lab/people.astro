@@ -1,0 +1,107 @@
+---
+import LabLayout from '../../layouts/LabLayout.astro';
+import PiCard from '../../components/cards/PiCard.astro';
+import { Image } from 'astro:assets';
+
+import michelleImg from '../../assets/images/headshots/michelle-headshot.jpg';
+import seanImg from '../../assets/images/headshots/sean-headshot.jpg';
+import anneImg from '../../assets/images/headshots/anne-slaughter.jpeg';
+import toniImg from '../../assets/images/headshots/toni-ignoffo.jpeg';
+import parkerImg from '../../assets/images/headshots/parker-headshot.jpg';
+import erickImg from '../../assets/images/headshots/erick-ortiz.jpg';
+import jenniferImg from '../../assets/images/headshots/jennifer-staat.jpg';
+import anthonyImg from '../../assets/images/headshots/anthony-donahue.jpg';
+---
+
+<LabLayout title="People — Jungbluth Lab">
+  <br />
+  <h1 class="font-heading text-3xl font-bold text-gray-900">People</h1>
+
+  <!-- PIs -->
+  <section class="mt-8">
+    <h2 class="font-heading text-xl font-bold text-gray-900">Principal Investigators</h2>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
+      <PiCard
+        name="Michelle Jungbluth, PhD"
+        title="Oceanographer, Zooplankton and Food Web Ecologist"
+        keywords={['Zooplankton', 'DNA Barcoding']}
+        href="/michelle"
+        color="michelle"
+        variant="compact"
+        image={michelleImg}
+      />
+      <PiCard
+        name="Sean Jungbluth, PhD"
+        title="Oceanographer, Microbial Ecologist, and Computational Biologist"
+        keywords={['Deep Biosphere', 'Genomics']}
+        href="/sean"
+        color="sean"
+        variant="compact"
+        image={seanImg}
+      />
+    </div>
+  </section>
+
+  <!-- Research Associates -->
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-bold text-gray-900">Research Associates</h2>
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="flex flex-col items-center text-center">
+        <Image src={anneImg} alt="Anne Slaughter" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Anne Slaughter</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <Image src={toniImg} alt="Toni Ignoffo" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Toni Ignoffo</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <Image src={parkerImg} alt="Kiona Parker" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Kiona Parker</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Graduate Students -->
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-bold text-gray-900">Graduate Students</h2>
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="flex flex-col items-center text-center">
+        <Image src={erickImg} alt="Erick Ortiz" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Erick Ortiz</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <Image src={jenniferImg} alt="Jennifer Staat" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Jennifer Staat</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <Image src={anthonyImg} alt="Anthony Donahue" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Anthony Donahue</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lab Alumni -->
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-bold text-gray-900">Lab Alumni</h2>
+    <ul class="mt-4 space-y-1 text-sm text-gray-700">
+      <li>Amy Wong (M.S. IMES program, 2024)</li>
+      <li>Cheryl Patel (M.S. IMES program, 2024)</li>
+      <li>Danh Nguyen (Undergrad REU Fellow, 2024)</li>
+      <li>Eliana Prosnitz (Undergrad Pomona Internship, 2024)</li>
+      <li>Adrianna Albert (Undergrad REU Fellow, 2023)</li>
+      <li>Paris Kellogg (Undergrad REU Fellow, 2022)</li>
+      <li>Aspen Katla (Undergrad REU Fellow, 2019)</li>
+      <li>De'Asha Moore (Undergrad STAR Fellow, 2019)</li>
+      <li>Chandler Gorman (Undergrad, 2018)</li>
+    </ul>
+  </section>
+
+  <!-- Join -->
+  <section class="mt-12 rounded-lg bg-lab-50 border border-lab-200 p-6 text-center">
+    <h2 class="font-heading text-lg font-bold text-gray-900">Interested in joining?</h2>
+    <p class="mt-2 text-sm text-gray-600">We are always looking for motivated students and collaborators.</p>
+    <a href="/join" class="mt-4 inline-block px-5 py-2 rounded-lg bg-lab-600 text-white text-sm font-medium hover:bg-lab-700 transition-colors">
+      Learn More
+    </a>
+  </section>
+</LabLayout>

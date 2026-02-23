@@ -1,0 +1,99 @@
+---
+import LabLayout from '../../layouts/LabLayout.astro';
+import ResearchTile from '../../components/cards/ResearchTile.astro';
+import PiCard from '../../components/cards/PiCard.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+import eosImg from '../../assets/images/hero/eos-center-banner.jpg';
+import eosMapImg from '../../assets/images/location/eos-center-map.png';
+import michelleImg from '../../assets/images/headshots/michelle-headshot.jpg';
+import seanImg from '../../assets/images/headshots/sean-headshot.jpg';
+import logoImg from '../../assets/images/logos/jungbluth-lab-logo.png';
+
+const researchThemes = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<LabLayout title="Lab — Jungbluth Lab">
+  <!-- Hero Banner -->
+  <div class="-mx-4 sm:-mx-6 lg:-mx-8 mb-6 bg-sky-100">
+    <Image
+      src={eosImg}
+      alt="EOS Center waterfront research facility"
+      class="block w-full h-auto"
+      widths={[750]}
+      sizes="100vw"
+    />
+  </div>
+
+  <!-- Title + Description + Map row -->
+  <div class="flex flex-col md:flex-row gap-6 items-start md:-mt-34 relative z-10 mb-6">
+    <div class="flex-1 md:pt-34">
+      <div class="flex items-start gap-4">
+        <Image src={logoImg} alt="Jungbluth Lab logo" width={120} height={120} class="w-28 h-28 shrink-0" />
+        <p class="text-lg text-gray-600">
+          A collaborative research group spanning zooplankton ecology, microbial genomics, and computational biology. We are located at the <a href="https://eos.sfsu.edu/" target="_blank" rel="noopener noreferrer" class="text-lab-600 hover:text-lab-700 font-medium">Estuary &amp; Ocean Science Center</a> in Tiburon, California — situated on the shores of San Francisco Bay.
+        </p>
+      </div>
+      <!-- PI Cards -->
+      <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center [&>a]:sm:flex-1 [&>a]:sm:min-w-0">
+        <PiCard
+          name="Michelle Jungbluth, PhD"
+          title="Oceanographer, Zooplankton and Food Web Ecologist"
+          keywords={['Zooplankton Ecology', 'DNA Barcoding', 'Estuary Science']}
+          href="/michelle"
+          color="michelle"
+          variant="compact"
+          image={michelleImg}
+        />
+        <PiCard
+          name="Sean Jungbluth, PhD"
+          title="Oceanographer, Microbial Ecologist, and Computational Biologist"
+          keywords={['Deep Biosphere', 'Microbial Genomics', 'Computational Biology']}
+          href="/sean"
+          color="sean"
+          variant="compact"
+          image={seanImg}
+        />
+      </div>
+    </div>
+    <!-- Location map -->
+    <div class="shrink-0 w-full md:w-84">
+      <div class="rounded-lg border border-gray-200 overflow-hidden shadow-md">
+        <Image
+          src={eosMapImg}
+          alt="Map showing EOS Center location on San Francisco Bay"
+          width={336}
+          class="w-full h-auto"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Nav -->
+  <div class="mt-10 grid grid-cols-3 gap-3">
+    <a href="/lab/people" class="block rounded-lg border border-lab-200 bg-lab-50 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-lab-800">People</span>
+    </a>
+    <a href="/lab/research" class="block rounded-lg border border-lab-200 bg-lab-50 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-lab-800">Research</span>
+    </a>
+    <a href="/lab/news" class="block rounded-lg border border-lab-200 bg-lab-50 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-lab-800">News</span>
+    </a>
+  </div>
+
+  <!-- All Research Themes -->
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-bold text-gray-900">Research Themes</h2>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {researchThemes.map((theme) => (
+        <ResearchTile
+          title={theme.data.title}
+          summary={theme.data.summary}
+          pi={theme.data.pi}
+        />
+      ))}
+    </div>
+  </section>
+</LabLayout>

@@ -1,0 +1,79 @@
+---
+import PiLayout from '../../layouts/PiLayout.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+
+import crypticImg from '../../assets/images/research/cryptic-interactions.jpg';
+import feedingImg from '../../assets/images/research/feeding-results.jpg';
+import larvalImg from '../../assets/images/research/larval-crustacean.jpg';
+import deltaImg from '../../assets/images/research/delta-estuary-boat-panoramic.jpg';
+import octopusImg from '../../assets/images/research/deep-sea-octopus-on-borehole.jpg';
+import treeImg from '../../assets/images/research/archaea-phylogenetic-tree.jpg';
+import genomicsImg from '../../assets/images/research/genomic-data-standards-illustration.jpeg';
+import heroImg from '../../assets/images/hero/mysid-zooplankton-ethanol-jungbluth.jpg';
+
+const themes = (await getCollection('research'))
+  .filter((r) => r.data.pi === 'michelle' || r.data.pi === 'both')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+  themes.map(async (theme) => {
+    const { Content } = await render(theme);
+    return { theme, Content };
+  })
+);
+
+const imageMap: Record<string, ImageMetadata> = {
+  'michelle-dna-barcoding': larvalImg,
+  'michelle-larval-fish-diets': deltaImg,
+  'michelle-cryptic-interactions': crypticImg,
+  'ocean-exploration': octopusImg,
+  'diversity-of-life': treeImg,
+  'genomics-tech': genomicsImg,
+};
+---
+
+<PiLayout title="Research — Michelle Jungbluth" pi="michelle" currentPage="research">
+  <div class="mt-6 rounded-lg overflow-hidden">
+    <Image
+      src={heroImg}
+      alt="Mysid zooplankton samples in ethanol"
+      class="w-full h-48 md:h-64 object-cover"
+      widths={[800, 1200]}
+      sizes="100vw"
+    />
+  </div>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 mt-6">Research</h1>
+  <p class="mt-2 text-sm text-gray-500">For full, up-to-date publication list see Google Scholar.</p>
+  <p class="mt-2 text-gray-600">
+    <a href="https://scholar.google.com/citations?user=sGNBJUIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-michelle-600 hover:text-michelle-700">Google Scholar</a> &middot;
+    <a href="https://www.researchgate.net/profile/Michelle_Jungbluth" target="_blank" rel="noopener noreferrer" class="text-michelle-600 hover:text-michelle-700">ResearchGate</a> &middot;
+    <a href="https://www.linkedin.com/in/michelle-jungbluth/" target="_blank" rel="noopener noreferrer" class="text-michelle-600 hover:text-michelle-700">LinkedIn</a>
+  </p>
+
+  <div class="mt-8 space-y-12">
+    {rendered.map(({ theme, Content }) => {
+      const img = imageMap[theme.id];
+      return (
+        <article class="border-l-4 border-l-michelle-500 pl-6">
+          <h2 class="font-heading text-xl font-bold text-gray-900">{theme.data.title}</h2>
+          <div class="mt-4 flex flex-col md:flex-row gap-6">
+            <div class="prose prose-gray prose-sm max-w-none flex-1">
+              <Content />
+            </div>
+            {img && (
+              <div class="shrink-0 md:w-64">
+                <Image
+                  src={img}
+                  alt={theme.data.title}
+                  width={256}
+                  class="rounded-lg w-full"
+                />
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</PiLayout>

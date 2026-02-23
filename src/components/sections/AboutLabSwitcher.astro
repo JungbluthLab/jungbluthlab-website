@@ -1,0 +1,178 @@
+---
+const audiences = [
+  {
+    id: 'explorer',
+    label: 'Explorer',
+    color: 'amber',
+    headline: "We're ocean detectives!",
+    content: "Have you ever wondered what lives deep in the ocean, where it's totally dark? We go there to find out! We study tiny animals that float in the sea and even tinier living things called microbes — they're so small you need a super-powered microscope to see them. We also use computers to read the special code inside every living thing (it's called DNA) to figure out who's who in the ocean. Think of us as underwater detectives, solving mysteries about creatures most people have never seen!",
+    badges: ['Ocean', 'Tiny Creatures', 'DNA Code', 'Underwater Robots'],
+  },
+  {
+    id: 'student',
+    label: 'Student',
+    color: 'emerald',
+    headline: 'Exploring hidden ocean life with DNA',
+    content: "The Jungbluth Lab studies life in the ocean — from the zooplankton drifting near the surface to the microbes living deep beneath the seafloor. We use DNA to identify species that are hard to tell apart by sight, track what animals eat, and discover organisms that science hasn't described yet. Our fieldwork takes us to San Francisco Bay, the open Pacific, and even the deep sea using underwater robots. By combining biology with computer science, we build a clearer picture of how ocean ecosystems work and how they're changing.",
+    badges: ['Zooplankton', 'Microbes', 'DNA Barcoding', 'Deep Sea', 'Ecosystems'],
+  },
+  {
+    id: 'undergrad',
+    label: 'Undergrad',
+    color: 'blue',
+    headline: 'Marine ecology meets computational biology',
+    content: "The Jungbluth Lab bridges zooplankton ecology, microbial genomics, and computational biology. Michelle's group uses DNA barcoding and environmental DNA (eDNA) to study zooplankton communities, resolve food web interactions, and support conservation of threatened estuarine fishes like the longfin smelt. Sean's group applies metagenomics and bioinformatics to explore microbial and viral diversity in deep-sea and subsurface environments, while developing open-source tools and data standards that serve the broader research community. Together, we investigate life from the San Francisco Estuary to the deep ocean floor, combining fieldwork with large-scale data analysis.",
+    badges: ['eDNA', 'Metagenomics', 'Zooplankton Ecology', 'Bioinformatics', 'Food Webs'],
+  },
+  {
+    id: 'scientist',
+    label: 'Scientist',
+    color: 'violet',
+    headline: 'Integrating molecular ecology and environmental genomics',
+    content: "The Jungbluth Lab operates at the intersection of molecular ecology, environmental genomics, and computational biology. Michelle Jungbluth's research program applies qPCR-based quantification, DNA metabarcoding, and next-generation sequencing to characterize zooplankton population dynamics, resolve trophic interactions in estuarine food webs, and identify indicator species in human-impacted wetlands. Sean Jungbluth's work centers on metagenomic exploration of microbial and viral diversity in subsurface and deep-sea environments, with parallel efforts in AI/ML applications for environmental science and the development of community data standards (e.g., NMDC, KBase). Current projects span the San Francisco Estuary, open-ocean pelagic systems, and deep biosphere sites, integrating field sampling with high-throughput sequencing and scalable bioinformatics pipelines.",
+    badges: ['Metagenomics', 'qPCR', 'Metabarcoding', 'Subsurface Biosphere', 'AI/ML', 'Trophic Ecology'],
+  },
+];
+
+const colorMap: Record<string, { pill: string; badge: string }> = {
+  amber:   { pill: 'bg-amber-500',   badge: 'bg-amber-100 text-amber-800' },
+  emerald: { pill: 'bg-emerald-600', badge: 'bg-emerald-100 text-emerald-800' },
+  blue:    { pill: 'bg-blue-600',    badge: 'bg-blue-100 text-blue-800' },
+  violet:  { pill: 'bg-violet-600',  badge: 'bg-violet-100 text-violet-800' },
+};
+---
+
+<section class="py-16 bg-lab-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-heading text-2xl font-bold text-gray-900 text-center">What We Do</h2>
+    <p class="mt-2 text-gray-600 text-center">Choose your level to learn about our research</p>
+
+    <!-- Pill toggle -->
+    <div class="flex items-center gap-1 rounded-full bg-white p-1 w-fit mx-auto mt-6 shadow-sm border border-lab-200" role="tablist">
+      {audiences.map((a, i) => (
+        <button
+          data-audience={a.id}
+          data-color={a.color}
+          class:list={[
+            'audience-pill px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer',
+            i === 0
+              ? `${colorMap[a.color].pill} text-white shadow-sm`
+              : 'text-gray-600 hover:bg-gray-100',
+          ]}
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-controls={`panel-${a.id}`}
+        >
+          {a.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Content panels -->
+    <div class="mt-8 max-w-3xl mx-auto min-h-[180px]">
+      {audiences.map((a, i) => (
+        <div
+          id={`panel-${a.id}`}
+          data-badge-classes={colorMap[a.color].badge}
+          class:list={[
+            'audience-panel transition-all duration-200 ease-in-out',
+            i === 0 ? 'opacity-100 translate-y-0' : 'hidden opacity-0 translate-y-2',
+          ]}
+          role="tabpanel"
+          aria-hidden={i !== 0 ? 'true' : 'false'}
+        >
+          <h3 class="font-heading text-lg font-bold text-gray-900 text-center">{a.headline}</h3>
+          <p class="mt-3 text-gray-700 text-center leading-relaxed">{a.content}</p>
+          <div class="mt-4 flex flex-wrap justify-center gap-2">
+            {a.badges.map((badge) => (
+              <span class:list={['px-2.5 py-0.5 rounded-full text-xs font-medium', colorMap[a.color].badge]}>
+                {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const pillColors: Record<string, string> = {
+    amber: 'bg-amber-500',
+    emerald: 'bg-emerald-600',
+    blue: 'bg-blue-600',
+    violet: 'bg-violet-600',
+  };
+  const allPillColorClasses = Object.values(pillColors);
+
+  function initAudienceSwitcher() {
+    const pills = document.querySelectorAll('.audience-pill');
+    const panels = document.querySelectorAll('.audience-panel');
+
+    if (!pills.length || !panels.length) return;
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const targetId = pill.getAttribute('data-audience');
+
+        // Update pill states
+        pills.forEach((p) => {
+          const isActive = p.getAttribute('data-audience') === targetId;
+          const color = p.getAttribute('data-color') || 'violet';
+          p.setAttribute('aria-selected', String(isActive));
+
+          // Remove all color classes first
+          allPillColorClasses.forEach((c) => p.classList.remove(c));
+
+          if (isActive) {
+            p.classList.add(pillColors[color]);
+            p.classList.add('text-white', 'shadow-sm');
+            p.classList.remove('text-gray-600');
+          } else {
+            p.classList.remove('text-white', 'shadow-sm');
+            p.classList.add('text-gray-600');
+          }
+        });
+
+        // Swap panels
+        panels.forEach((panel) => {
+          const isTarget = panel.id === `panel-${targetId}`;
+          if (isTarget) {
+            panel.classList.remove('hidden');
+            panel.setAttribute('aria-hidden', 'false');
+            requestAnimationFrame(() => {
+              panel.classList.remove('opacity-0', 'translate-y-2');
+              panel.classList.add('opacity-100', 'translate-y-0');
+            });
+          } else {
+            panel.classList.add('opacity-0', 'translate-y-2');
+            panel.classList.remove('opacity-100', 'translate-y-0');
+            panel.setAttribute('aria-hidden', 'true');
+            setTimeout(() => {
+              if (panel.getAttribute('aria-hidden') === 'true') {
+                panel.classList.add('hidden');
+              }
+            }, 200);
+          }
+        });
+      });
+    });
+
+    // Keyboard navigation
+    const pillArray = Array.from(pills);
+    pillArray.forEach((pill, index) => {
+      pill.addEventListener('keydown', (e) => {
+        let newIndex = index;
+        if (e.key === 'ArrowRight') newIndex = (index + 1) % pillArray.length;
+        else if (e.key === 'ArrowLeft') newIndex = (index - 1 + pillArray.length) % pillArray.length;
+        else return;
+        e.preventDefault();
+        (pillArray[newIndex] as HTMLElement).focus();
+        (pillArray[newIndex] as HTMLElement).click();
+      });
+    });
+  }
+
+  initAudienceSwitcher();
+  document.addEventListener('astro:after-swap', initAudienceSwitcher);
+</script>

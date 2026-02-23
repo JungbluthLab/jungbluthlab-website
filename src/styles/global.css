@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  /* Michelle - green tones */
+  --color-michelle-50: #ecfdf5;
+  --color-michelle-100: #d1fae5;
+  --color-michelle-200: #a7f3d0;
+  --color-michelle-300: #6ee7b7;
+  --color-michelle-400: #34d399;
+  --color-michelle-500: #10b981;
+  --color-michelle-600: #059669;
+  --color-michelle-700: #047857;
+  --color-michelle-800: #065f46;
+  --color-michelle-900: #064e3b;
+
+  /* Sean - blue tones */
+  --color-sean-50: #eff6ff;
+  --color-sean-100: #dbeafe;
+  --color-sean-200: #bfdbfe;
+  --color-sean-300: #93c5fd;
+  --color-sean-400: #60a5fa;
+  --color-sean-500: #3b82f6;
+  --color-sean-600: #2563eb;
+  --color-sean-700: #1d4ed8;
+  --color-sean-800: #1e40af;
+  --color-sean-900: #1e3a8a;
+
+  /* Lab - purple tones (shared) */
+  --color-lab-50: #faf5ff;
+  --color-lab-100: #f3e8ff;
+  --color-lab-200: #e9d5ff;
+  --color-lab-300: #d8b4fe;
+  --color-lab-400: #c084fc;
+  --color-lab-500: #a855f7;
+  --color-lab-600: #9333ea;
+  --color-lab-700: #7e22ce;
+  --color-lab-800: #6b21a8;
+  --color-lab-900: #581c87;
+
+  /* Fonts */
+  --font-heading: 'Raleway', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}

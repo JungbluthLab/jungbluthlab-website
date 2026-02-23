@@ -1,0 +1,4 @@
+# Legacy site redirects
+/sean.html /sean 301
+/michelle.html /michelle 301
+/index.html / 301

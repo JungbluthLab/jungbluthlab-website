@@ -1,0 +1,60 @@
+---
+import LabLayout from '../../layouts/LabLayout.astro';
+import ResearchTile from '../../components/cards/ResearchTile.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+import heroImg from '../../assets/images/hero/alaska-pier-mountains-panoramic.jpg';
+
+const themes = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+const sharedThemes = themes.filter((t) => t.data.pi === 'both');
+const michelleThemes = themes.filter((t) => t.data.pi === 'michelle');
+const seanThemes = themes.filter((t) => t.data.pi === 'sean');
+---
+
+<LabLayout title="Research — Jungbluth Lab">
+  <div class="mt-6 rounded-lg overflow-hidden">
+    <Image
+      src={heroImg}
+      alt="Alaska pier with mountain panorama"
+      class="w-full h-48 md:h-64 object-cover"
+      widths={[800, 1200]}
+      sizes="100vw"
+    />
+  </div>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 mt-6">Lab Research</h1>
+  <p class="mt-2 text-gray-600">Active research areas across the Jungbluth Lab.</p>
+
+  <section class="mt-10">
+    <h2 class="font-heading text-xl font-bold text-lab-700">Shared Research</h2>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {sharedThemes.map((theme) => (
+        <ResearchTile title={theme.data.title} summary={theme.data.summary} pi={theme.data.pi} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-bold text-michelle-700">Michelle's Research</h2>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {michelleThemes.map((theme) => (
+        <ResearchTile title={theme.data.title} summary={theme.data.summary} pi={theme.data.pi} />
+      ))}
+    </div>
+    <a href="/michelle/research" class="mt-4 inline-block text-sm font-medium text-michelle-600 hover:text-michelle-700">
+      View Michelle's research details &rarr;
+    </a>
+  </section>
+
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-bold text-sean-700">Sean's Research</h2>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {seanThemes.map((theme) => (
+        <ResearchTile title={theme.data.title} summary={theme.data.summary} pi={theme.data.pi} />
+      ))}
+    </div>
+    <a href="/sean/research" class="mt-4 inline-block text-sm font-medium text-sean-600 hover:text-sean-700">
+      View Sean's research details &rarr;
+    </a>
+  </section>
+</LabLayout>

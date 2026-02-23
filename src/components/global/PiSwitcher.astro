@@ -1,0 +1,52 @@
+---
+interface Props {
+  currentPi: 'michelle' | 'sean';
+  currentPage: string; // e.g., '', 'research', 'publications'
+}
+
+const { currentPi, currentPage } = Astro.props;
+const otherPi = currentPi === 'michelle' ? 'sean' : 'michelle';
+
+// Map equivalent pages between PIs
+const pageMap: Record<string, Record<string, string>> = {
+  michelle: {
+    '': '/michelle',
+    research: '/michelle/research',
+    teaching: '/michelle/teaching',
+  },
+  sean: {
+    '': '/sean',
+    research: '/sean/research',
+    teaching: '/sean/teaching',
+  },
+};
+
+function getEquivalentPage(pi: string, page: string): string {
+  return pageMap[pi]?.[page] ?? `/${pi}`;
+}
+---
+
+<div class="flex items-center gap-2 rounded-full bg-gray-100 p-1 w-fit">
+  <a
+    href={getEquivalentPage('michelle', currentPage)}
+    class:list={[
+      'px-4 py-1.5 rounded-full text-sm font-medium transition-all',
+      currentPi === 'michelle'
+        ? 'bg-michelle-600 text-white shadow-sm'
+        : 'text-gray-600 hover:text-michelle-700 hover:bg-michelle-50',
+    ]}
+  >
+    Michelle
+  </a>
+  <a
+    href={getEquivalentPage('sean', currentPage)}
+    class:list={[
+      'px-4 py-1.5 rounded-full text-sm font-medium transition-all',
+      currentPi === 'sean'
+        ? 'bg-sean-600 text-white shadow-sm'
+        : 'text-gray-600 hover:text-sean-700 hover:bg-sean-50',
+    ]}
+  >
+    Sean
+  </a>
+</div>

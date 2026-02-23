@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../../assets/images/logos/jungbluth-lab-logo-alt.png';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  {
+    label: 'Lab',
+    href: '/lab',
+    children: [
+      { label: 'Overview', href: '/lab' },
+      { label: 'People', href: '/lab/people' },
+      { label: 'Research', href: '/lab/research' },
+      { label: 'News', href: '/lab/news' },
+    ],
+  },
+  {
+    label: 'Michelle',
+    href: '/michelle',
+    children: [
+      { label: 'About', href: '/michelle' },
+      { label: 'Research', href: '/michelle/research' },
+      { label: 'Teaching & Outreach', href: '/michelle/teaching' },
+    ],
+  },
+  {
+    label: 'Sean',
+    href: '/sean',
+    children: [
+      { label: 'About', href: '/sean' },
+      { label: 'Research', href: '/sean/research' },
+      { label: 'Teaching & Outreach', href: '/sean/teaching' },
+    ],
+  },
+  { label: 'Join', href: '/join' },
+  { label: 'Contact', href: '/contact' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-heading text-xl font-bold text-gray-900 tracking-tight">
+        <Image src={logoImg} alt="Jungbluth Lab logo" width={40} height={40} class="w-10 h-10" />
+        Jungbluth Lab
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex md:items-center md:gap-1">
+        {navItems.map((item) => (
+          <div class="relative group">
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                isActive(item.href)
+                  ? 'text-lab-700 bg-lab-50'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+              ]}
+            >
+              {item.label}
+            </a>
+            {item.children && (
+              <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
+                <div class="rounded-lg bg-white shadow-lg ring-1 ring-gray-200 py-2 min-w-[180px]">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class:list={[
+                        'block px-4 py-2 text-sm transition-colors',
+                        isActive(child.href)
+                          ? 'text-lab-700 bg-lab-50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+                      ]}
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+        aria-label="Open menu"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
+    <div class="px-4 py-3 space-y-1">
+      {navItems.map((item) => (
+        <>
+          <a
+            href={item.href}
+            class:list={[
+              'block px-3 py-2 text-base font-medium rounded-md',
+              isActive(item.href)
+                ? 'text-lab-700 bg-lab-50'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+            ]}
+          >
+            {item.label}
+          </a>
+          {item.children && (
+            <div class="pl-4 space-y-1">
+              {item.children.map((child) => (
+                <a
+                  href={child.href}
+                  class:list={[
+                    'block px-3 py-1.5 text-sm rounded-md',
+                    isActive(child.href)
+                      ? 'text-lab-700 bg-lab-50'
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50',
+                  ]}
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

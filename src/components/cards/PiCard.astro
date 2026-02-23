@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  name: string;
+  title: string;
+  keywords: string[];
+  href: string;
+  color: 'michelle' | 'sean';
+  variant?: 'large' | 'compact';
+  image?: ImageMetadata;
+}
+
+const { name, title, keywords, href, color, variant = 'large', image } = Astro.props;
+
+const borderColors = {
+  michelle: 'border-michelle-500 hover:border-michelle-600',
+  sean: 'border-sean-500 hover:border-sean-600',
+};
+
+const bgColors = {
+  michelle: 'bg-michelle-50',
+  sean: 'bg-sean-50',
+};
+
+const textColors = {
+  michelle: 'text-michelle-700',
+  sean: 'text-sean-700',
+};
+
+const btnColors = {
+  michelle: 'bg-michelle-600 hover:bg-michelle-700',
+  sean: 'bg-sean-600 hover:bg-sean-700',
+};
+
+const badgeColors = {
+  michelle: 'bg-michelle-100 text-michelle-800',
+  sean: 'bg-sean-100 text-sean-800',
+};
+
+const ringColors = {
+  michelle: 'ring-michelle-400',
+  sean: 'ring-sean-400',
+};
+
+const imgSize = variant === 'large' ? 112 : 56;
+---
+
+<a
+  href={href}
+  class:list={[
+    'block rounded-xl border-2 transition-all hover:shadow-lg group',
+    borderColors[color],
+    variant === 'large' ? 'p-8' : 'px-5 py-3',
+  ]}
+>
+  {image ? (
+    <Image
+      src={image}
+      alt={name}
+      width={imgSize}
+      height={imgSize}
+      class:list={[
+        'rounded-full mx-auto object-cover ring-3',
+        ringColors[color],
+        variant === 'large' ? 'w-28 h-28 mb-6' : 'w-14 h-14 mb-2',
+      ]}
+    />
+  ) : (
+    <div class:list={['rounded-full mx-auto flex items-center justify-center font-heading font-bold', bgColors[color], textColors[color], variant === 'large' ? 'w-28 h-28 text-4xl mb-6' : 'w-14 h-14 text-xl mb-2']}>
+      {name.charAt(0)}
+    </div>
+  )}
+  <h2 class:list={['font-heading font-bold text-center text-gray-900', variant === 'large' ? 'text-2xl' : 'text-lg']}>
+    {name}
+  </h2>
+  <p class:list={['text-center mt-1', textColors[color], variant === 'large' ? 'text-base' : 'text-sm']}>
+    {title}
+  </p>
+  {variant === 'large' && (
+    <div class="flex flex-wrap justify-center gap-2 mt-4">
+      {keywords.map((kw) => (
+        <span class:list={['text-xs px-2.5 py-1 rounded-full font-medium', badgeColors[color]]}>
+          {kw}
+        </span>
+      ))}
+    </div>
+  )}
+  <div class:list={[variant === 'large' ? 'mt-5' : 'mt-2', 'text-center']}>
+    <span class:list={['inline-block rounded-lg font-medium text-white transition-colors', btnColors[color], variant === 'large' ? 'px-5 py-2 text-sm' : 'px-4 py-1.5 text-xs']}>
+      Learn More
+    </span>
+  </div>
+</a>

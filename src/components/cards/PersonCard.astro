@@ -1,0 +1,40 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  advisor: 'michelle' | 'sean' | 'both';
+  website?: string;
+}
+
+const { name, role, advisor, website } = Astro.props;
+
+const badgeConfig = {
+  michelle: { label: 'Michelle', class: 'bg-michelle-100 text-michelle-800' },
+  sean: { label: 'Sean', class: 'bg-sean-100 text-sean-800' },
+  both: { label: 'Both', class: 'bg-lab-100 text-lab-800' },
+};
+
+const badge = badgeConfig[advisor];
+
+const initials = name
+  .split(' ')
+  .map((n) => n[0])
+  .join('')
+  .slice(0, 2);
+---
+
+<div class="rounded-lg border border-gray-200 p-5 text-center hover:shadow-md transition-shadow">
+  <div class="w-16 h-16 rounded-full bg-gray-100 mx-auto flex items-center justify-center text-lg font-medium text-gray-600">
+    {initials}
+  </div>
+  <h3 class="mt-3 font-heading font-semibold text-gray-900">{name}</h3>
+  <p class="text-sm text-gray-600 mt-0.5">{role}</p>
+  <span class:list={['inline-block mt-2 text-xs px-2.5 py-0.5 rounded-full font-medium', badge.class]}>
+    {badge.label}
+  </span>
+  {website && (
+    <a href={website} target="_blank" rel="noopener noreferrer" class="block mt-2 text-xs text-lab-600 hover:text-lab-700">
+      Website &rarr;
+    </a>
+  )}
+</div>

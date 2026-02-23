@@ -1,0 +1,81 @@
+---
+import PiLayout from '../../layouts/PiLayout.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+
+import microbialDivImg from '../../assets/images/research/microbial-diversity.jpg';
+import corkImg from '../../assets/images/research/cork-infographic.jpg';
+import octopusImg from '../../assets/images/research/deep-sea-octopus-on-borehole.jpg';
+import genomicsImg from '../../assets/images/research/genomic-data-standards-illustration.jpeg';
+import virusesImg from '../../assets/images/research/viruses.jpg';
+import hotspringsImg from '../../assets/images/research/geothermal-hot-springs-landscape.png';
+import synbioImg from '../../assets/images/research/synthetic-biology-dna-illustration.jpg';
+import treeImg from '../../assets/images/research/archaea-phylogenetic-tree.jpg';
+import iodpImg from '../../assets/images/research/iodp-ship-moonpool.jpg';
+import heroImg from '../../assets/images/hero/alvin-at-sea.jpeg';
+
+const themes = (await getCollection('research'))
+  .filter((r) => r.data.pi === 'sean' || r.data.pi === 'both')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+  themes.map(async (theme) => {
+    const { Content } = await render(theme);
+    return { theme, Content };
+  })
+);
+
+const imageMap: Record<string, ImageMetadata> = {
+  'diversity-of-life': treeImg,
+  'ocean-exploration': octopusImg,
+  'genomics-tech': genomicsImg,
+  'sean-astrobiology': hotspringsImg,
+  'sean-synthetic-biology': synbioImg,
+  'sean-ai-ml': iodpImg,
+};
+---
+
+<PiLayout title="Research — Sean Jungbluth" pi="sean" currentPage="research">
+  <div class="mt-6 rounded-lg overflow-hidden">
+    <Image
+      src={heroImg}
+      alt="Alvin submersible at sea"
+      class="w-full h-48 md:h-64 object-cover"
+      widths={[800, 1200]}
+      sizes="100vw"
+    />
+  </div>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 mt-6">Research</h1>
+  <p class="mt-2 text-sm text-gray-500">For full, up-to-date publication list see Google Scholar.</p>
+  <p class="mt-2 text-gray-600">
+    <a href="https://scholar.google.com/citations?user=WANnSuYAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-sean-600 hover:text-sean-700">Google Scholar</a> &middot;
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=Jungbluth+SP" target="_blank" rel="noopener noreferrer" class="text-sean-600 hover:text-sean-700">PubMed</a> &middot;
+    <a href="https://orcid.org/0000-0001-9265-8341" target="_blank" rel="noopener noreferrer" class="text-sean-600 hover:text-sean-700">ORCID</a>
+  </p>
+
+  <div class="mt-8 space-y-12">
+    {rendered.map(({ theme, Content }) => {
+      const img = imageMap[theme.id];
+      return (
+        <article class="border-l-4 border-l-sean-500 pl-6">
+          <h2 class="font-heading text-xl font-bold text-gray-900">{theme.data.title}</h2>
+          <div class="mt-4 flex flex-col md:flex-row gap-6">
+            <div class="prose prose-gray prose-sm max-w-none flex-1">
+              <Content />
+            </div>
+            {img && (
+              <div class="shrink-0 md:w-64">
+                <Image
+                  src={img}
+                  alt={theme.data.title}
+                  width={256}
+                  class="rounded-lg w-full"
+                />
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</PiLayout>

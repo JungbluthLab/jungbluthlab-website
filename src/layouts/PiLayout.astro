@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/global/Nav.astro';
+import Footer from '../components/global/Footer.astro';
+import PiSwitcher from '../components/global/PiSwitcher.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pi: 'michelle' | 'sean';
+  currentPage?: string;
+}
+
+const { title, description, pi, currentPage = '' } = Astro.props;
+
+const accentClasses = {
+  michelle: 'border-michelle-500',
+  sean: 'border-sean-500',
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+  <div class={`border-t-4 ${accentClasses[pi]}`}>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+      <PiSwitcher currentPi={pi} currentPage={currentPage} />
+    </div>
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <slot />
+    </main>
+  </div>
+  <Footer />
+</BaseLayout>
