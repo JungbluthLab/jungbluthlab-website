@@ -3,7 +3,7 @@ import LabLayout from '../../layouts/LabLayout.astro';
 import PiCard from '../../components/cards/PiCard.astro';
 import { Image } from 'astro:assets';
 
-import michelleImg from '../../assets/images/headshots/michelle-headshot.jpg';
+import michelleImg from '../../assets/images/headshots/michelle-headshot-new.jpg';
 import seanImg from '../../assets/images/headshots/sean-headshot.jpg';
 import anneImg from '../../assets/images/headshots/anne-slaughter.jpeg';
 import toniImg from '../../assets/images/headshots/toni-ignoffo.jpeg';
@@ -11,6 +11,7 @@ import parkerImg from '../../assets/images/headshots/parker-headshot.jpg';
 import erickImg from '../../assets/images/headshots/erick-ortiz.jpg';
 import jenniferImg from '../../assets/images/headshots/jennifer-staat.jpg';
 import anthonyImg from '../../assets/images/headshots/anthony-donahue.jpg';
+import dominicImg from '../../assets/images/headshots/dominic-terrusa.jpg';
 ---
 
 <LabLayout title="People — Jungbluth Lab">
@@ -66,7 +67,7 @@ import anthonyImg from '../../assets/images/headshots/anthony-donahue.jpg';
     <h2 class="font-heading text-xl font-bold text-gray-900">Graduate Students</h2>
     <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <div class="flex flex-col items-center text-center">
-        <Image src={erickImg} alt="Erick Ortiz" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
+        <Image src={erickImg} alt="Erick Ortiz" width={168} height={168} class="w-42 h-42 rounded-full object-cover object-top ring-2 ring-lab-300" />
         <p class="mt-2 font-medium text-gray-900 text-sm">Erick Ortiz</p>
       </div>
       <div class="flex flex-col items-center text-center">
@@ -76,6 +77,10 @@ import anthonyImg from '../../assets/images/headshots/anthony-donahue.jpg';
       <div class="flex flex-col items-center text-center">
         <Image src={anthonyImg} alt="Anthony Donahue" width={168} height={168} class="w-42 h-42 rounded-full object-cover ring-2 ring-lab-300" />
         <p class="mt-2 font-medium text-gray-900 text-sm">Anthony Donahue</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <Image src={dominicImg} alt="Dominic Terrusa" width={168} height={168} class="w-42 h-42 rounded-full object-cover object-top ring-2 ring-lab-300" />
+        <p class="mt-2 font-medium text-gray-900 text-sm">Dominic Terrusa</p>
       </div>
     </div>
   </section>

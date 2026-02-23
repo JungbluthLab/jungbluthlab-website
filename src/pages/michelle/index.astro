@@ -4,7 +4,7 @@ import ResearchTile from '../../components/cards/ResearchTile.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
-import michelleImg from '../../assets/images/headshots/michelle-headshot.jpg';
+import michelleImg from '../../assets/images/headshots/michelle-headshot-new.jpg';
 
 const piData = (await getCollection('pi')).find((p) => p.id === 'michelle');
 const researchThemes = (await getCollection('research'))
@@ -16,12 +16,12 @@ const researchThemes = (await getCollection('research'))
   <!-- Identity -->
   <div class="py-8">
     <div class="flex flex-col md:flex-row items-start gap-8">
-      <div class="shrink-0 w-42 h-42 rounded-full overflow-hidden ring-3 ring-michelle-400 relative">
+      <div class="shrink-0 w-42 h-42 rounded-full overflow-hidden ring-3 ring-michelle-400">
         <Image
           src={michelleImg}
           alt="Michelle Jungbluth"
           width={256}
-          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-auto"
+          class="w-full h-full object-cover object-[center_40%]"
         />
       </div>
       <div>
@@ -59,9 +59,7 @@ const researchThemes = (await getCollection('research'))
 
   <!-- Bio -->
   <section class="prose prose-gray max-w-none mt-4">
-    <p>I am an ecologist, naturalist, and marine biologist interested in the phenomena occurring at the base of aquatic food webs.</p>
-    <br />
-    <p>I am an expert in DNA barcoding, environmental DNA, quantitative PCR-based methods, and next-generation DNA sequencing. Current research projects utilize these techniques to explore trophic mismatches in high latitude ecosystems, identify indicator species in estuarine wetlands, and dig deep into the diverse prey important to larval fishes.</p>
+    <p>Dr. Michelle Jungbluth investigates how marine organisms, from microbes to larger invertebrates, interact within ocean and coastal ecosystems to form complex food webs. She applies molecular tools such as DNA sequencing and eDNA metabarcoding to characterize biodiversity and reveal ecological connections that are not easily observed through traditional methods. Her research focuses on how these biological communities respond to environmental variability and stress, improving our understanding of ecosystem resilience and change in estuarine and coastal systems. She is also interested in leveraging advances in molecular biology to address applied environmental challenges, including pollution mitigation and habitat restoration. Her expertise integrates marine ecology, molecular biology, and bioinformatics, combining field-based sampling with laboratory and computational approaches to study biodiversity and ecosystem function.</p>
   </section>
 
   <!-- Quick Links -->
@@ -94,6 +92,11 @@ const researchThemes = (await getCollection('research'))
   <!-- Contact -->
   <section class="mt-12 rounded-lg bg-michelle-50 border border-michelle-200 p-6">
     <h2 class="font-heading text-lg font-bold text-gray-900">Contact</h2>
-    <p class="mt-2 text-sm text-gray-700">mjungbluth at sfsu dot edu</p>
+    <div class="mt-2 space-y-2 text-sm text-gray-700">
+      <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">General Inquiries</p>
+      <p>michelle dot marinelab at gmail dot com</p>
+      <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
+      <p>mjungbluth at sfsu dot edu</p>
+    </div>
   </section>
 </PiLayout>
