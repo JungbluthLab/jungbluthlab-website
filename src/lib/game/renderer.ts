@@ -115,6 +115,25 @@ export function render(
     }
   }
 
+  // ── Map Labels ──
+  const MAP_LABELS: { text: string; tx: number; ty: number; size: number; alpha: number }[] = [
+    { text: 'Angel Island', tx: 108, ty: 28, size: 7, alpha: 0.3 },
+    { text: 'Paradise Dr', tx: 10, ty: 55, size: 5, alpha: 0.25 },
+    { text: 'The Slab', tx: 65, ty: 66, size: 5, alpha: 0.25 },
+    { text: 'Research Pier', tx: 86, ty: 52, size: 5, alpha: 0.25 },
+    { text: 'SF Bay', tx: 90, ty: 75, size: 7, alpha: 0.2 },
+  ];
+
+  for (const label of MAP_LABELS) {
+    const lx = Math.floor(label.tx * TILE_SIZE - cam.x);
+    const ly = Math.floor(label.ty * TILE_SIZE - cam.y);
+    if (lx < -100 || lx > V_WIDTH + 100 || ly < -20 || ly > V_HEIGHT + 20) continue;
+    ctx.fillStyle = `rgba(255, 255, 255, ${label.alpha})`;
+    ctx.font = `${label.size}px monospace`;
+    ctx.textAlign = 'center';
+    ctx.fillText(label.text, lx, ly);
+  }
+
   // ── Collectibles (sparkle animation) ──
   const sparkle = Math.floor(Date.now() / 300) % 3;
   for (const c of getUncollected()) {
@@ -159,6 +178,30 @@ export function render(
         ctx.fillStyle = '#ccc';
         ctx.fillRect(csx - 1, csy - 2, 1, 4);
         ctx.fillRect(csx + 1, csy - 2, 1, 4);
+        break;
+      case 'anchor':
+        // Dark iron link with hook
+        ctx.fillStyle = '#4a4a4a';
+        ctx.fillRect(csx - 2, csy - 2, 4, 5);
+        ctx.fillStyle = '#3a3a3a';
+        ctx.fillRect(csx - 3, csy + 2, 6, 1);
+        ctx.fillRect(csx - 1, csy - 3, 2, 1);
+        break;
+      case 'net_float':
+        // Gray steel sphere
+        ctx.fillStyle = '#888';
+        ctx.fillRect(csx - 2, csy - 2, 5, 5);
+        ctx.fillStyle = '#aaa';
+        ctx.fillRect(csx - 1, csy - 1, 3, 3);
+        break;
+      case 'coin':
+        // Gold coin with detail
+        ctx.fillStyle = '#d4a04a';
+        ctx.fillRect(csx - 2, csy - 2, 5, 5);
+        ctx.fillStyle = '#e8c060';
+        ctx.fillRect(csx - 1, csy - 1, 3, 3);
+        ctx.fillStyle = '#c09030';
+        ctx.fillRect(csx, csy, 1, 1);
         break;
     }
 
