@@ -119,11 +119,11 @@ export function render(
 
   // ── Map Labels ──
   const MAP_LABELS: { text: string; tx: number; ty: number; size: number; alpha: number }[] = [
-    { text: 'Angel Island', tx: 108, ty: 28, size: 7, alpha: 0.3 },
     { text: 'Paradise Dr', tx: 10, ty: 55, size: 5, alpha: 0.25 },
     { text: 'The Slab', tx: 65, ty: 66, size: 5, alpha: 0.25 },
     { text: 'Research Pier', tx: 86, ty: 52, size: 5, alpha: 0.25 },
     { text: 'SF Bay', tx: 90, ty: 75, size: 7, alpha: 0.2 },
+    { text: 'Bridge', tx: 92, ty: 37, size: 5, alpha: 0.25 },
   ];
 
   for (const label of MAP_LABELS) {
