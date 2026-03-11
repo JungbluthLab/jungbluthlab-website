@@ -6,7 +6,7 @@ import type { TileGrid, TreeDef } from './map-data';
 import type { BuildingDef } from './buildings';
 import type { CameraState } from './camera';
 import type { PlayerState } from './player';
-import type { Seagull, Fish, Crab, Butterfly } from './wildlife';
+import type { Seagull, Fish, Crab, Butterfly, PerchBird, Deer } from './wildlife';
 import type { NPC } from './npcs';
 import { drawMinimap } from './minimap';
 import { getParticles } from './particles';
@@ -40,6 +40,8 @@ export function render(
   fish: Fish[],
   crabs: Crab[],
   butterflies: Butterfly[],
+  perchBirds: PerchBird[],
+  deer: Deer[],
   npcs: NPC[],
   npcDialogueIndex: Map<string, number>,
   discoveredSet: Set<string>,
@@ -393,6 +395,50 @@ export function render(
     const wingSpread = b.wingFrame === 0 ? 2 : b.wingFrame === 1 ? 1 : 0;
     ctx.fillRect(bsx - 2, bsy - wingSpread, 2, 2);
     ctx.fillRect(bsx + 1, bsy - wingSpread, 2, 2);
+  }
+
+  // Perching birds
+  for (const pb of perchBirds) {
+    const pbsx = Math.floor(pb.x - cam.x);
+    const pbsy = Math.floor(pb.y - cam.y);
+    if (pbsx < -10 || pbsx > V_WIDTH + 10 || pbsy < -10 || pbsy > V_HEIGHT + 10) continue;
+    ctx.fillStyle = pb.color;
+    // Body
+    ctx.fillRect(pbsx - 1, pbsy, 3, 2);
+    if (pb.flying) {
+      // Wings while flying
+      const wingY = pb.wingFrame === 0 ? -1 : pb.wingFrame === 1 ? 0 : 1;
+      ctx.fillRect(pbsx - 3, pbsy + wingY, 2, 1);
+      ctx.fillRect(pbsx + 2, pbsy + wingY, 2, 1);
+    }
+    // Beak
+    ctx.fillStyle = '#cc8800';
+    ctx.fillRect(pbsx + 2, pbsy, 1, 1);
+  }
+
+  // Deer
+  for (const d of deer) {
+    const dsx = Math.floor(d.x - cam.x);
+    const dsy = Math.floor(d.y - cam.y);
+    if (dsx < -10 || dsx > V_WIDTH + 10 || dsy < -10 || dsy > V_HEIGHT + 10) continue;
+    // Body
+    ctx.fillStyle = '#8B6914';
+    ctx.fillRect(dsx - 4, dsy - 2, 8, 4);
+    // Head
+    ctx.fillStyle = '#9a7a24';
+    ctx.fillRect(dsx + (d.dx >= 0 ? 4 : -6), dsy - 4, 3, 3);
+    // Legs
+    ctx.fillStyle = '#7a5a14';
+    if (d.state === 'walk' && d.frame === 1) {
+      ctx.fillRect(dsx - 3, dsy + 2, 1, 3);
+      ctx.fillRect(dsx + 3, dsy + 2, 1, 3);
+    } else {
+      ctx.fillRect(dsx - 2, dsy + 2, 1, 3);
+      ctx.fillRect(dsx + 2, dsy + 2, 1, 3);
+    }
+    // White tail spot
+    ctx.fillStyle = '#ddd';
+    ctx.fillRect(dsx + (d.dx >= 0 ? -4 : 4), dsy - 1, 1, 2);
   }
 
   // ── Interaction hint ──

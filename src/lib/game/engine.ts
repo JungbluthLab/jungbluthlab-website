@@ -10,6 +10,8 @@ import {
   createFish, updateFish, type Fish,
   createCrabs, updateCrabs, type Crab,
   createButterflies, updateButterflies, type Butterfly,
+  createPerchBirds, updatePerchBirds, type PerchBird,
+  createDeer, updateDeer, type Deer,
 } from './wildlife';
 import { getVisibleNPCs, type NPC } from './npcs';
 import { showPopup, hidePopup, isPopupOpen, getDiscoveredCount, getDiscoveredSet, isEraComplete, updateDiscoveryDisplay, setupPopupListeners } from './popup';
@@ -36,6 +38,9 @@ let seagulls: Seagull[];
 let fish: Fish[];
 let crabs: Crab[];
 let butterflies: Butterfly[];
+let perchBirds: PerchBird[];
+let deer: Deer[];
+let hillTrees: { x: number; y: number }[];
 
 // NPC dialogue cycling state
 let lastNearNPC: string | null = null;
@@ -122,6 +127,11 @@ export function initGame() {
   fish = createFish(8);
   crabs = createCrabs(6, map);
   butterflies = createButterflies(4);
+
+  // Perch birds need tree positions from the hillside
+  hillTrees = trees.filter(t => t.x < 25 * 16); // hillside trees only
+  perchBirds = createPerchBirds(4, hillTrees);
+  deer = createDeer(2);
 
   initMinimap(map);
   initRenderer();
@@ -368,6 +378,8 @@ function gameLoop() {
   updateFish(fish);
   updateCrabs(crabs);
   updateButterflies(butterflies);
+  updatePerchBirds(perchBirds, hillTrees);
+  updateDeer(deer);
 
   // Water animation
   waterTimer++;
@@ -439,6 +451,7 @@ function gameLoop() {
     waterFrame,
     interactionFlash,
     fish, crabs, butterflies,
+    perchBirds, deer,
     visibleNPCs,
     npcDialogueIndex,
     discoveredSet,
