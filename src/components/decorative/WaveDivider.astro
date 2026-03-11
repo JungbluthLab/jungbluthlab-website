@@ -1,0 +1,35 @@
+---
+interface Props {
+  color?: 'sean' | 'michelle' | 'lab';
+  flip?: boolean;
+  className?: string;
+}
+
+const { color = 'lab', flip = false, className = '' } = Astro.props;
+
+const fillColors = {
+  sean: '#eff6ff',
+  michelle: '#ecfdf5',
+  lab: '#faf5ff',
+};
+
+const fill = fillColors[color];
+---
+
+<svg
+  viewBox="0 0 1200 60"
+  preserveAspectRatio="none"
+  class:list={['wave-divider block w-full h-10', flip && 'rotate-180', className]}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z"
+    fill={fill}
+  />
+</svg>
+
+<style>
+  :global(.dark) .wave-divider path {
+    fill: #1e293b !important;
+  }
+</style>

@@ -43,22 +43,23 @@ const imageMap: Record<string, ImageMetadata> = {
       sizes="100vw"
     />
   </div>
-  <h1 class="font-heading text-3xl font-bold text-gray-900 mt-6">Research</h1>
-  <p class="mt-2 text-sm text-gray-500">For full, up-to-date publication list see Google Scholar.</p>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 dark:text-slate-100 mt-6">Research</h1>
+  <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-michelle-500 to-michelle-600"></div>
+  <p class="mt-2 text-sm text-gray-500 dark:text-slate-500">For full, up-to-date publication list see Google Scholar.</p>
   <p class="mt-2 text-gray-600">
-    <a href="https://scholar.google.com/citations?user=sGNBJUIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-michelle-600 hover:text-michelle-700">Google Scholar</a> &middot;
-    <a href="https://www.researchgate.net/profile/Michelle_Jungbluth" target="_blank" rel="noopener noreferrer" class="text-michelle-600 hover:text-michelle-700">ResearchGate</a> &middot;
-    <a href="https://www.linkedin.com/in/michelle-jungbluth/" target="_blank" rel="noopener noreferrer" class="text-michelle-600 hover:text-michelle-700">LinkedIn</a>
+    <a href="https://scholar.google.com/citations?user=sGNBJUIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-michelle-600 dark:text-michelle-400 hover:text-michelle-700 dark:hover:text-michelle-300">Google Scholar</a> &middot;
+    <a href="https://www.researchgate.net/profile/Michelle_Jungbluth" target="_blank" rel="noopener noreferrer" class="text-michelle-600 dark:text-michelle-400 hover:text-michelle-700 dark:hover:text-michelle-300">ResearchGate</a> &middot;
+    <a href="https://www.linkedin.com/in/michelle-jungbluth/" target="_blank" rel="noopener noreferrer" class="text-michelle-600 dark:text-michelle-400 hover:text-michelle-700 dark:hover:text-michelle-300">LinkedIn</a>
   </p>
 
-  <div class="mt-8 space-y-12">
+  <div class="mt-8 space-y-12" data-animate="stagger">
     {rendered.map(({ theme, Content }) => {
       const img = imageMap[theme.id];
       return (
         <article class="border-l-4 border-l-michelle-500 pl-6">
-          <h2 class="font-heading text-xl font-bold text-gray-900">{theme.data.title}</h2>
+          <h2 class="font-heading text-xl font-bold text-gray-900 dark:text-slate-100">{theme.data.title}</h2>
           <div class="mt-4 flex flex-col md:flex-row gap-6">
-            <div class="prose prose-gray prose-sm max-w-none flex-1">
+            <div class="prose prose-gray dark:prose-invert prose-sm max-w-none flex-1">
               <Content />
             </div>
             {img && (

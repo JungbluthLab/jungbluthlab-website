@@ -22,12 +22,14 @@ const seanThemes = themes.filter((t) => t.data.pi === 'sean');
       sizes="100vw"
     />
   </div>
-  <h1 class="font-heading text-3xl font-bold text-gray-900 mt-6">Lab Research</h1>
-  <p class="mt-2 text-gray-600">Active research areas across the Jungbluth Lab.</p>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 dark:text-slate-100 mt-6">Lab Research</h1>
+  <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-lab-500 to-lab-600"></div>
+  <p class="mt-2 text-gray-600 dark:text-slate-400">Active research areas across the Jungbluth Lab.</p>
 
   <section class="mt-10">
-    <h2 class="font-heading text-xl font-bold text-lab-700">Shared Research</h2>
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <h2 class="font-heading text-xl font-bold text-lab-700 dark:text-lab-400">Shared Research</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-lab-500 to-lab-600"></div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" data-animate="stagger">
       {sharedThemes.map((theme) => (
         <ResearchTile title={theme.data.title} summary={theme.data.summary} pi={theme.data.pi} />
       ))}
@@ -35,25 +37,27 @@ const seanThemes = themes.filter((t) => t.data.pi === 'sean');
   </section>
 
   <section class="mt-12">
-    <h2 class="font-heading text-xl font-bold text-michelle-700">Michelle's Research</h2>
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <h2 class="font-heading text-xl font-bold text-michelle-700 dark:text-michelle-400">Michelle's Research</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-michelle-500 to-michelle-600"></div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" data-animate="stagger">
       {michelleThemes.map((theme) => (
         <ResearchTile title={theme.data.title} summary={theme.data.summary} pi={theme.data.pi} />
       ))}
     </div>
-    <a href="/michelle/research" class="mt-4 inline-block text-sm font-medium text-michelle-600 hover:text-michelle-700">
+    <a href="/michelle/research" class="mt-4 inline-block text-sm font-medium text-michelle-600 dark:text-michelle-400 hover:text-michelle-700 dark:hover:text-michelle-300">
       View Michelle's research details &rarr;
     </a>
   </section>
 
   <section class="mt-12">
-    <h2 class="font-heading text-xl font-bold text-sean-700">Sean's Research</h2>
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <h2 class="font-heading text-xl font-bold text-sean-700 dark:text-sean-400">Sean's Research</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-sean-500 to-sean-600"></div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" data-animate="stagger">
       {seanThemes.map((theme) => (
         <ResearchTile title={theme.data.title} summary={theme.data.summary} pi={theme.data.pi} />
       ))}
     </div>
-    <a href="/sean/research" class="mt-4 inline-block text-sm font-medium text-sean-600 hover:text-sean-700">
+    <a href="/sean/research" class="mt-4 inline-block text-sm font-medium text-sean-600 dark:text-sean-400 hover:text-sean-700 dark:hover:text-sean-300">
       View Sean's research details &rarr;
     </a>
   </section>

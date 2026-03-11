@@ -16,7 +16,7 @@ const researchThemes = (await getCollection('research'))
   <!-- Identity -->
   <div class="py-8">
     <div class="flex flex-col md:flex-row items-start gap-8">
-      <div class="shrink-0 w-42 h-42 rounded-full overflow-hidden ring-3 ring-michelle-400">
+      <div class="shrink-0 w-42 h-42 rounded-full overflow-hidden ring-3 ring-michelle-400" transition:name="pi-avatar-michelle">
         <Image
           src={michelleImg}
           alt="Michelle Jungbluth"
@@ -25,10 +25,10 @@ const researchThemes = (await getCollection('research'))
         />
       </div>
       <div>
-        <h1 class="font-heading text-3xl font-bold text-gray-900">{piData?.data.name}</h1>
+        <h1 class="font-heading text-3xl font-bold text-gray-900 dark:text-slate-100">{piData?.data.name}</h1>
         <p class="text-lg text-michelle-700 mt-1">{piData?.data.title}</p>
-        <p class="text-gray-600 mt-1">{piData?.data.role}</p>
-        <p class="text-gray-600">Adjunct Professor, Department of Biology, San Francisco State University</p>
+        <p class="text-gray-600 dark:text-slate-400 mt-1">{piData?.data.role}</p>
+        <p class="text-gray-600 dark:text-slate-400">Adjunct Professor, Department of Biology, San Francisco State University</p>
 
         <!-- Links -->
         <div class="flex flex-wrap gap-3 mt-4">
@@ -58,24 +58,25 @@ const researchThemes = (await getCollection('research'))
   </div>
 
   <!-- Bio -->
-  <section class="prose prose-gray max-w-none mt-4">
+  <section class="prose prose-gray max-w-none mt-4 dark:prose-invert" data-animate="fade-up">
     <p>Dr. Michelle Jungbluth investigates how marine organisms, from microbes to larger invertebrates, interact within ocean and coastal ecosystems to form complex food webs. She applies molecular tools such as DNA sequencing and eDNA metabarcoding to characterize biodiversity and reveal ecological connections that are not easily observed through traditional methods. Her research focuses on how these biological communities respond to environmental variability and stress, improving our understanding of ecosystem resilience and change in estuarine and coastal systems. She is also interested in leveraging advances in molecular biology to address applied environmental challenges, including pollution mitigation and habitat restoration. Her expertise integrates marine ecology, molecular biology, and bioinformatics, combining field-based sampling with laboratory and computational approaches to study biodiversity and ecosystem function.</p>
   </section>
 
   <!-- Quick Links -->
   <div class="mt-10 grid grid-cols-2 gap-3">
-    <a href="/michelle/research" class="block rounded-lg border border-michelle-200 bg-michelle-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-michelle-800">Research</span>
+    <a href="/michelle/research" class="block rounded-lg border border-michelle-200 dark:border-michelle-800 bg-michelle-50 dark:bg-michelle-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-michelle-800 dark:text-michelle-300">Research</span>
     </a>
-    <a href="/michelle/teaching" class="block rounded-lg border border-michelle-200 bg-michelle-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-michelle-800">Teaching & Outreach</span>
+    <a href="/michelle/teaching" class="block rounded-lg border border-michelle-200 dark:border-michelle-800 bg-michelle-50 dark:bg-michelle-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-michelle-800 dark:text-michelle-300">Teaching & Outreach</span>
     </a>
   </div>
 
   <!-- Research Themes Preview -->
   <section class="mt-12">
-    <h2 class="font-heading text-xl font-bold text-gray-900">Research</h2>
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <h2 class="font-heading text-xl font-bold text-gray-900 dark:text-slate-100">Research</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-michelle-500 to-michelle-600"></div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" data-animate="stagger">
       {researchThemes.map((theme) => (
         <ResearchTile
           title={theme.data.title}
@@ -90,12 +91,13 @@ const researchThemes = (await getCollection('research'))
   </section>
 
   <!-- Contact -->
-  <section class="mt-12 rounded-lg bg-michelle-50 border border-michelle-200 p-6">
-    <h2 class="font-heading text-lg font-bold text-gray-900">Contact</h2>
-    <div class="mt-2 space-y-2 text-sm text-gray-700">
-      <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">General Inquiries</p>
+  <section class="mt-12 rounded-lg bg-michelle-50 dark:bg-michelle-900/20 border border-michelle-200 dark:border-michelle-800 p-6">
+    <h2 class="font-heading text-lg font-bold text-gray-900 dark:text-slate-100">Contact</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-michelle-500 to-michelle-600"></div>
+    <div class="mt-2 space-y-2 text-sm text-gray-700 dark:text-slate-400">
+      <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider">General Inquiries</p>
       <p>michelle dot marinelab at gmail dot com</p>
-      <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
+      <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
       <p>mjungbluth at sfsu dot edu</p>
     </div>
   </section>

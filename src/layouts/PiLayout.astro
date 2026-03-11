@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Nav from '../components/global/Nav.astro';
 import Footer from '../components/global/Footer.astro';
 import PiSwitcher from '../components/global/PiSwitcher.astro';
+import WaveDivider from '../components/decorative/WaveDivider.astro';
 
 interface Props {
   title: string;
@@ -13,18 +14,37 @@ interface Props {
 
 const { title, description, pi, currentPage = '' } = Astro.props;
 
-const accentClasses = {
-  michelle: 'border-michelle-500',
-  sean: 'border-sean-500',
+const gradientClasses = {
+  michelle: 'from-michelle-50 via-michelle-100/50 to-emerald-50/30',
+  sean: 'from-sean-50 via-sean-100/50 to-blue-50/30',
+};
+
+const darkGradientClasses = {
+  michelle: 'dark:from-michelle-950/30 dark:via-michelle-900/20 dark:to-emerald-950/10',
+  sean: 'dark:from-sean-950/30 dark:via-sean-900/20 dark:to-blue-950/10',
+};
+
+const barClasses = {
+  michelle: 'from-michelle-500 to-michelle-600',
+  sean: 'from-sean-500 to-sean-600',
+};
+
+const waveColor = {
+  michelle: 'michelle' as const,
+  sean: 'sean' as const,
 };
 ---
 
 <BaseLayout title={title} description={description}>
   <Nav />
-  <div class={`border-t-4 ${accentClasses[pi]}`}>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-      <PiSwitcher currentPi={pi} currentPage={currentPage} />
+  <div>
+    <div class={`h-1 bg-gradient-to-r ${barClasses[pi]}`}></div>
+    <div class={`bg-gradient-to-br ${gradientClasses[pi]} ${darkGradientClasses[pi]}`} data-animate="fade-in">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+        <PiSwitcher currentPi={pi} currentPage={currentPage} />
+      </div>
     </div>
+    <WaveDivider color={waveColor[pi]} />
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
       <slot />
     </main>

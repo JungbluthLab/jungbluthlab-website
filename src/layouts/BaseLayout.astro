@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -29,8 +30,26 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
+    <ViewTransitions />
+    <script is:inline>
+      (function() {
+        function applyTheme() {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        }
+        applyTheme();
+        document.addEventListener('astro:after-swap', applyTheme);
+      })();
+    </script>
   </head>
-  <body class="min-h-screen bg-white text-gray-900 antialiased">
+  <body class="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 antialiased">
     <slot />
+    <script>
+      import '../scripts/scroll-animate.ts';
+    </script>
   </body>
 </html>

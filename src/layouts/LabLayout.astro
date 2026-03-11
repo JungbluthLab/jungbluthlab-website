@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Nav from '../components/global/Nav.astro';
 import Footer from '../components/global/Footer.astro';
+import WaveDivider from '../components/decorative/WaveDivider.astro';
 
 interface Props {
   title: string;
@@ -13,7 +14,12 @@ const { title, description } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <Nav />
-  <div class="border-t-4 border-lab-500">
+  <div>
+    <div class="h-1 bg-gradient-to-r from-lab-500 to-lab-600"></div>
+    <div class="bg-gradient-to-br from-lab-50 via-lab-100/50 to-purple-50/30 dark:from-lab-950/30 dark:via-lab-900/20 dark:to-purple-950/10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2"></div>
+    </div>
+    <WaveDivider color="lab" />
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-0 pb-16">
       <slot />
     </main>

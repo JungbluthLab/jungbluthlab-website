@@ -14,28 +14,28 @@ interface Props {
 const { name, title, keywords, href, color, variant = 'large', image } = Astro.props;
 
 const borderColors = {
-  michelle: 'border-michelle-500 hover:border-michelle-600',
-  sean: 'border-sean-500 hover:border-sean-600',
+  michelle: 'border-michelle-500 hover:border-michelle-600 dark:border-michelle-600',
+  sean: 'border-sean-500 hover:border-sean-600 dark:border-sean-600',
 };
 
 const bgColors = {
-  michelle: 'bg-michelle-50',
-  sean: 'bg-sean-50',
+  michelle: 'bg-michelle-50 dark:bg-michelle-900/20',
+  sean: 'bg-sean-50 dark:bg-sean-900/20',
 };
 
 const textColors = {
-  michelle: 'text-michelle-700',
-  sean: 'text-sean-700',
+  michelle: 'text-michelle-700 dark:text-michelle-400',
+  sean: 'text-sean-700 dark:text-sean-400',
 };
 
 const btnColors = {
-  michelle: 'bg-michelle-600 hover:bg-michelle-700',
-  sean: 'bg-sean-600 hover:bg-sean-700',
+  michelle: 'bg-michelle-600 hover:bg-michelle-700 dark:bg-michelle-500 dark:hover:bg-michelle-600',
+  sean: 'bg-sean-600 hover:bg-sean-700 dark:bg-sean-500 dark:hover:bg-sean-600',
 };
 
 const badgeColors = {
-  michelle: 'bg-michelle-100 text-michelle-800',
-  sean: 'bg-sean-100 text-sean-800',
+  michelle: 'bg-michelle-100 text-michelle-800 dark:bg-michelle-900/20 dark:text-michelle-300',
+  sean: 'bg-sean-100 text-sean-800 dark:bg-sean-900/20 dark:text-sean-300',
 };
 
 const ringColors = {
@@ -49,7 +49,7 @@ const imgSize = variant === 'large' ? 112 : 56;
 <a
   href={href}
   class:list={[
-    'block rounded-xl border-2 transition-all hover:shadow-lg group',
+    'block rounded-xl border-2 transition-all duration-250 hover:shadow-lg hover:-translate-y-0.5 group bg-white dark:bg-slate-800',
     borderColors[color],
     variant === 'large' ? 'p-8' : 'px-5 py-3',
   ]}
@@ -60,18 +60,19 @@ const imgSize = variant === 'large' ? 112 : 56;
       alt={name}
       width={imgSize}
       height={imgSize}
+      transition:name={`pi-avatar-${color}`}
       class:list={[
-        'rounded-full mx-auto object-cover ring-3',
+        'rounded-full mx-auto object-cover ring-3 shadow-md',
         ringColors[color],
         variant === 'large' ? 'w-28 h-28 mb-6' : 'w-14 h-14 mb-2',
       ]}
     />
   ) : (
-    <div class:list={['rounded-full mx-auto flex items-center justify-center font-heading font-bold', bgColors[color], textColors[color], variant === 'large' ? 'w-28 h-28 text-4xl mb-6' : 'w-14 h-14 text-xl mb-2']}>
+    <div class:list={['rounded-full mx-auto flex items-center justify-center font-heading font-bold shadow-md', bgColors[color], textColors[color], variant === 'large' ? 'w-28 h-28 text-4xl mb-6' : 'w-14 h-14 text-xl mb-2']}>
       {name.charAt(0)}
     </div>
   )}
-  <h2 class:list={['font-heading font-bold text-center text-gray-900', variant === 'large' ? 'text-2xl' : 'text-lg']}>
+  <h2 class:list={['font-heading font-bold text-center text-gray-900 dark:text-slate-100', variant === 'large' ? 'text-2xl' : 'text-lg']}>
     {name}
   </h2>
   <p class:list={['text-center mt-1', textColors[color], variant === 'large' ? 'text-base' : 'text-sm']}>
@@ -87,7 +88,7 @@ const imgSize = variant === 'large' ? 112 : 56;
     </div>
   )}
   <div class:list={[variant === 'large' ? 'mt-5' : 'mt-2', 'text-center']}>
-    <span class:list={['inline-block rounded-lg font-medium text-white transition-colors', btnColors[color], variant === 'large' ? 'px-5 py-2 text-sm' : 'px-4 py-1.5 text-xs']}>
+    <span class:list={['inline-block rounded-lg font-medium text-white transition-colors shadow-md', btnColors[color], variant === 'large' ? 'px-5 py-2 text-sm' : 'px-4 py-1.5 text-xs']}>
       Learn More
     </span>
   </div>

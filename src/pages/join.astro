@@ -4,9 +4,10 @@ import LabLayout from '../layouts/LabLayout.astro';
 
 <LabLayout title="Join — Jungbluth Lab">
   <br />
-  <h1 class="font-heading text-3xl font-bold text-gray-900">Joining the Lab</h1>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 dark:text-slate-100">Joining the Lab</h1>
+  <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-lab-500 to-lab-600"></div>
 
-  <div class="mt-8 prose prose-gray max-w-none">
+  <div class="mt-8 prose prose-gray dark:prose-invert max-w-none" data-animate="fade-up">
     <p>We would love to hear from you if your interests align with the lab.</p>
 
     <br />
@@ -30,24 +31,24 @@ import LabLayout from '../layouts/LabLayout.astro';
     <p>Please contact us directly by sending an email to either Sean or Michelle at the addresses below.</p>
   </div>
 
-  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="rounded-lg bg-michelle-50 border border-michelle-200 p-6">
-      <h3 class="font-heading text-lg font-bold text-gray-900">Michelle Jungbluth, PhD</h3>
-      <p class="mt-1 text-sm text-michelle-700">Oceanographer, Zooplankton and Food Web Ecologist</p>
-      <div class="mt-4 space-y-2 text-sm text-gray-700">
-        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">General Inquiries</p>
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6" data-animate="stagger">
+    <div class="rounded-lg bg-michelle-50 dark:bg-michelle-900/20 border border-michelle-200 dark:border-michelle-800 p-6 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
+      <h3 class="font-heading text-lg font-bold text-gray-900 dark:text-slate-100">Michelle Jungbluth, PhD</h3>
+      <p class="mt-1 text-sm text-michelle-700 dark:text-michelle-400">Oceanographer, Zooplankton and Food Web Ecologist</p>
+      <div class="mt-4 space-y-2 text-sm text-gray-700 dark:text-slate-400">
+        <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider">General Inquiries</p>
         <p>michelle dot marinelab at gmail dot com</p>
-        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
+        <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
         <p>mjungbluth at sfsu dot edu</p>
       </div>
     </div>
-    <div class="rounded-lg bg-sean-50 border border-sean-200 p-6">
-      <h3 class="font-heading text-lg font-bold text-gray-900">Sean Jungbluth, PhD</h3>
-      <p class="mt-1 text-sm text-sean-700">Oceanographer, Microbial Ecologist, and Computational Biologist</p>
-      <div class="mt-4 space-y-2 text-sm text-gray-700">
-        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">General Inquiries</p>
+    <div class="rounded-lg bg-sean-50 dark:bg-sean-900/20 border border-sean-200 dark:border-sean-800 p-6 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
+      <h3 class="font-heading text-lg font-bold text-gray-900 dark:text-slate-100">Sean Jungbluth, PhD</h3>
+      <p class="mt-1 text-sm text-sean-700 dark:text-sean-400">Oceanographer, Microbial Ecologist, and Computational Biologist</p>
+      <div class="mt-4 space-y-2 text-sm text-gray-700 dark:text-slate-400">
+        <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider">General Inquiries</p>
         <p>seanj dot lab at gmail dot com</p>
-        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
+        <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
         <p>sjungbluth at sfsu dot edu</p>
       </div>
     </div>

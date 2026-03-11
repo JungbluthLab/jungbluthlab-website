@@ -45,22 +45,23 @@ const imageMap: Record<string, ImageMetadata> = {
       sizes="100vw"
     />
   </div>
-  <h1 class="font-heading text-3xl font-bold text-gray-900 mt-6">Research</h1>
-  <p class="mt-2 text-sm text-gray-500">For full, up-to-date publication list see Google Scholar.</p>
+  <h1 class="font-heading text-3xl font-bold text-gray-900 dark:text-slate-100 mt-6">Research</h1>
+  <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-sean-500 to-sean-600"></div>
+  <p class="mt-2 text-sm text-gray-500 dark:text-slate-500">For full, up-to-date publication list see Google Scholar.</p>
   <p class="mt-2 text-gray-600">
-    <a href="https://scholar.google.com/citations?user=WANnSuYAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-sean-600 hover:text-sean-700">Google Scholar</a> &middot;
-    <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=Jungbluth+SP" target="_blank" rel="noopener noreferrer" class="text-sean-600 hover:text-sean-700">PubMed</a> &middot;
-    <a href="https://orcid.org/0000-0001-9265-8341" target="_blank" rel="noopener noreferrer" class="text-sean-600 hover:text-sean-700">ORCID</a>
+    <a href="https://scholar.google.com/citations?user=WANnSuYAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-sean-600 dark:text-sean-400 hover:text-sean-700 dark:hover:text-sean-300">Google Scholar</a> &middot;
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=Jungbluth+SP" target="_blank" rel="noopener noreferrer" class="text-sean-600 dark:text-sean-400 hover:text-sean-700 dark:hover:text-sean-300">PubMed</a> &middot;
+    <a href="https://orcid.org/0000-0001-9265-8341" target="_blank" rel="noopener noreferrer" class="text-sean-600 dark:text-sean-400 hover:text-sean-700 dark:hover:text-sean-300">ORCID</a>
   </p>
 
-  <div class="mt-8 space-y-12">
+  <div class="mt-8 space-y-12" data-animate="stagger">
     {rendered.map(({ theme, Content }) => {
       const img = imageMap[theme.id];
       return (
         <article class="border-l-4 border-l-sean-500 pl-6">
-          <h2 class="font-heading text-xl font-bold text-gray-900">{theme.data.title}</h2>
+          <h2 class="font-heading text-xl font-bold text-gray-900 dark:text-slate-100">{theme.data.title}</h2>
           <div class="mt-4 flex flex-col md:flex-row gap-6">
-            <div class="prose prose-gray prose-sm max-w-none flex-1">
+            <div class="prose prose-gray dark:prose-invert prose-sm max-w-none flex-1">
               <Content />
             </div>
             {img && (

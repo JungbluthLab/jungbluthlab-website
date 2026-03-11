@@ -16,7 +16,7 @@ const researchThemes = (await getCollection('research')).sort((a, b) => a.data.o
 
 <LabLayout title="Lab — Jungbluth Lab">
   <!-- Hero Banner -->
-  <div class="-mx-4 sm:-mx-6 lg:-mx-8 mb-6 bg-sky-100">
+  <div class="-mx-4 sm:-mx-6 lg:-mx-8 mb-6 bg-sky-100 dark:bg-slate-800">
     <Image
       src={eosImg}
       alt="EOS Center waterfront research facility"
@@ -31,8 +31,8 @@ const researchThemes = (await getCollection('research')).sort((a, b) => a.data.o
     <div class="flex-1 md:pt-34">
       <div class="flex items-start gap-4">
         <Image src={logoImg} alt="Jungbluth Lab logo" width={120} height={120} class="w-28 h-28 shrink-0" />
-        <p class="text-lg text-gray-600">
-          A collaborative research group spanning zooplankton ecology, microbial genomics, and computational biology. We are located at the <a href="https://eos.sfsu.edu/" target="_blank" rel="noopener noreferrer" class="text-lab-600 hover:text-lab-700 font-medium">Estuary &amp; Ocean Science Center</a> in Tiburon, California — situated on the shores of San Francisco Bay.
+        <p class="text-lg text-gray-600 dark:text-slate-400">
+          A collaborative research group spanning zooplankton ecology, microbial genomics, and computational biology. We are located at the <a href="https://eos.sfsu.edu/" target="_blank" rel="noopener noreferrer" class="text-lab-600 dark:text-lab-400 hover:text-lab-700 font-medium">Estuary &amp; Ocean Science Center</a> in Tiburon, California — situated on the shores of San Francisco Bay.
         </p>
       </div>
       <!-- PI Cards -->
@@ -59,7 +59,7 @@ const researchThemes = (await getCollection('research')).sort((a, b) => a.data.o
     </div>
     <!-- Location map -->
     <div class="shrink-0 w-full md:w-84">
-      <div class="rounded-lg border border-gray-200 overflow-hidden shadow-md">
+      <div class="rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden shadow-md">
         <Image
           src={eosMapImg}
           alt="Map showing EOS Center location on San Francisco Bay"
@@ -72,21 +72,22 @@ const researchThemes = (await getCollection('research')).sort((a, b) => a.data.o
 
   <!-- Quick Nav -->
   <div class="mt-10 grid grid-cols-3 gap-3">
-    <a href="/lab/people" class="block rounded-lg border border-lab-200 bg-lab-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-lab-800">People</span>
+    <a href="/lab/people" class="block rounded-lg border border-lab-200 dark:border-lab-800 bg-lab-50 dark:bg-lab-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-lab-800 dark:text-lab-300">People</span>
     </a>
-    <a href="/lab/research" class="block rounded-lg border border-lab-200 bg-lab-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-lab-800">Research</span>
+    <a href="/lab/research" class="block rounded-lg border border-lab-200 dark:border-lab-800 bg-lab-50 dark:bg-lab-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-lab-800 dark:text-lab-300">Research</span>
     </a>
-    <a href="/lab/news" class="block rounded-lg border border-lab-200 bg-lab-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-lab-800">News</span>
+    <a href="/lab/news" class="block rounded-lg border border-lab-200 dark:border-lab-800 bg-lab-50 dark:bg-lab-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-lab-800 dark:text-lab-300">News</span>
     </a>
   </div>
 
   <!-- All Research Themes -->
   <section class="mt-12">
-    <h2 class="font-heading text-xl font-bold text-gray-900">Research Themes</h2>
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <h2 class="font-heading text-xl font-bold text-gray-900 dark:text-slate-100">Research Themes</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-lab-500 to-lab-600"></div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" data-animate="stagger">
       {researchThemes.map((theme) => (
         <ResearchTile
           title={theme.data.title}

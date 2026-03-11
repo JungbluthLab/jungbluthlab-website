@@ -12,13 +12,13 @@ const { title, description, url } = Astro.props;
   href={url}
   target="_blank"
   rel="noopener noreferrer"
-  class="block rounded-lg border border-gray-200 p-5 hover:shadow-md hover:border-sean-300 transition-all group"
+  class="block rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 hover:shadow-md hover:border-sean-300 hover:-translate-y-0.5 transition-all duration-250 group"
 >
-  <h3 class="font-heading font-semibold text-gray-900 group-hover:text-sean-700 transition-colors">
+  <h3 class="font-heading font-semibold text-gray-900 dark:text-slate-100 group-hover:text-sean-700 dark:group-hover:text-sean-400 transition-colors">
     {title}
   </h3>
-  <p class="mt-2 text-sm text-gray-600">{description}</p>
-  <span class="mt-3 inline-block text-xs font-medium text-sean-600 group-hover:text-sean-700">
+  <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">{description}</p>
+  <span class="mt-3 inline-block text-xs font-medium text-sean-600 dark:text-sean-400 group-hover:text-sean-700 dark:group-hover:text-sean-300">
     View on GitHub &rarr;
   </span>
 </a>

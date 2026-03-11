@@ -24,14 +24,15 @@ const researchThemes = (await getCollection('research'))
           width={168}
           height={168}
           class="w-42 h-42 rounded-full object-cover ring-3 ring-sean-400"
+          transition:name="pi-avatar-sean"
         />
       </div>
       <div>
-        <h1 class="font-heading text-3xl font-bold text-gray-900">{piData?.data.name}</h1>
+        <h1 class="font-heading text-3xl font-bold text-gray-900 dark:text-slate-100">{piData?.data.name}</h1>
         <p class="text-lg text-sean-700 mt-1">{piData?.data.title}</p>
-        <p class="text-gray-600 mt-1">{piData?.data.role}</p>
-        <p class="text-gray-600">Adjunct Professor, Department of Biology, San Francisco State University</p>
-        <p class="text-gray-600">Affiliate Researcher, Lawrence Berkeley National Laboratory</p>
+        <p class="text-gray-600 dark:text-slate-400 mt-1">{piData?.data.role}</p>
+        <p class="text-gray-600 dark:text-slate-400">Adjunct Professor, Department of Biology, San Francisco State University</p>
+        <p class="text-gray-600 dark:text-slate-400">Affiliate Researcher, Lawrence Berkeley National Laboratory</p>
 
         <!-- Links -->
         <div class="flex flex-wrap gap-3 mt-4">
@@ -64,8 +65,8 @@ const researchThemes = (await getCollection('research'))
   </div>
 
   <!-- Bio + Portrait -->
-  <section class="mt-4 flex flex-col md:flex-row gap-6">
-    <div class="prose prose-gray max-w-none flex-1">
+  <section class="mt-4 flex flex-col md:flex-row gap-6" data-animate="fade-up">
+    <div class="prose prose-gray max-w-none flex-1 dark:prose-invert">
       <p>Exploration of Earth's microbial and viral diversity is a major scientific frontier. Sequencing DNA — the blueprint of life — collected directly from the environment provides a powerful way to access the fantastic microbial diversity on our planet.</p>
       <p>My previous work has explored the nature and extent of microbial life underground and below the seafloor using tools rooted in molecular biology, biogeochemistry, and microbiology. Now I employ computational tools and leverage big data to continue exploring microbes at a larger scale, while developing software enabling molecular microbial ecology research for others.</p>
     </div>
@@ -82,18 +83,19 @@ const researchThemes = (await getCollection('research'))
 
   <!-- Quick Links -->
   <div class="mt-10 grid grid-cols-2 gap-3">
-    <a href="/sean/research" class="block rounded-lg border border-sean-200 bg-sean-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-sean-800">Research</span>
+    <a href="/sean/research" class="block rounded-lg border border-sean-200 dark:border-sean-800 bg-sean-50 dark:bg-sean-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-sean-800 dark:text-sean-300">Research</span>
     </a>
-    <a href="/sean/teaching" class="block rounded-lg border border-sean-200 bg-sean-50 p-4 text-center hover:shadow-md transition-shadow">
-      <span class="text-sm font-medium text-sean-800">Teaching & Outreach</span>
+    <a href="/sean/teaching" class="block rounded-lg border border-sean-200 dark:border-sean-800 bg-sean-50 dark:bg-sean-900/20 p-4 text-center hover:shadow-md transition-shadow">
+      <span class="text-sm font-medium text-sean-800 dark:text-sean-300">Teaching & Outreach</span>
     </a>
   </div>
 
   <!-- Research Themes Preview -->
   <section class="mt-12">
-    <h2 class="font-heading text-xl font-bold text-gray-900">Research</h2>
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <h2 class="font-heading text-xl font-bold text-gray-900 dark:text-slate-100">Research</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-sean-500 to-sean-600"></div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" data-animate="stagger">
       {researchThemes.map((theme) => (
         <ResearchTile
           title={theme.data.title}
@@ -108,12 +110,13 @@ const researchThemes = (await getCollection('research'))
   </section>
 
   <!-- Contact -->
-  <section class="mt-12 rounded-lg bg-sean-50 border border-sean-200 p-6">
-    <h2 class="font-heading text-lg font-bold text-gray-900">Contact</h2>
-    <div class="mt-2 space-y-2 text-sm text-gray-700">
-      <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">General Inquiries</p>
+  <section class="mt-12 rounded-lg bg-sean-50 dark:bg-sean-900/20 border border-sean-200 dark:border-sean-800 p-6">
+    <h2 class="font-heading text-lg font-bold text-gray-900 dark:text-slate-100">Contact</h2>
+    <div class="mt-2 h-0.5 w-10 rounded-full bg-gradient-to-r from-sean-500 to-sean-600"></div>
+    <div class="mt-2 space-y-2 text-sm text-gray-700 dark:text-slate-400">
+      <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider">General Inquiries</p>
       <p>seanj dot lab at gmail dot com</p>
-      <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
+      <p class="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wider mt-2">SFSU-specific Inquiries</p>
       <p>sjungbluth at sfsu dot edu</p>
     </div>
   </section>

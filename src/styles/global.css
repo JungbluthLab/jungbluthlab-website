@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Michelle - green tones */
   --color-michelle-50: #ecfdf5;
@@ -49,4 +51,55 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+}
+
+/* Scroll animation base styles */
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+[data-animate="fade-in"] {
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+}
+[data-animate="fade-left"] {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+[data-animate="fade-up"].animated,
+[data-animate="fade-in"].animated,
+[data-animate="fade-left"].animated {
+  opacity: 1;
+  transform: none;
+}
+[data-animate="stagger"] > .animated {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-animate="stagger"] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Floating particle animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-12px) translateX(6px); }
+  66% { transform: translateY(6px) translateX(-8px); }
+}
+
+/* Dark mode — Deep Ocean palette */
+.dark {
+  color-scheme: dark;
 }

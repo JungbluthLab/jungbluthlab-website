@@ -9,9 +9,9 @@ interface Props {
 const { title, summary, pi, href } = Astro.props;
 
 const badgeConfig = {
-  michelle: { label: 'Michelle', class: 'bg-michelle-100 text-michelle-800' },
-  sean: { label: 'Sean', class: 'bg-sean-100 text-sean-800' },
-  both: { label: 'Lab', class: 'bg-lab-100 text-lab-800' },
+  michelle: { label: 'Michelle', class: 'bg-michelle-100 text-michelle-800 dark:bg-michelle-900/20 dark:text-michelle-300' },
+  sean: { label: 'Sean', class: 'bg-sean-100 text-sean-800 dark:bg-sean-900/20 dark:text-sean-300' },
+  both: { label: 'Lab', class: 'bg-lab-100 text-lab-800 dark:bg-lab-900/20 dark:text-lab-300' },
 };
 
 const badge = badgeConfig[pi];
@@ -23,16 +23,16 @@ const borderColors = {
 };
 ---
 
-<div class:list={['rounded-lg border border-gray-200 border-l-4 p-5 hover:shadow-md transition-shadow', borderColors[pi]]}>
+<div class:list={['rounded-lg border border-gray-200 dark:border-slate-700 border-l-4 p-5 hover:shadow-md hover:translate-x-1 transition-all duration-200 group bg-white dark:bg-slate-800', borderColors[pi]]}>
   <div class="flex items-start justify-between gap-3">
-    <h3 class="font-heading font-semibold text-gray-900">{title}</h3>
+    <h3 class="font-heading font-semibold text-gray-900 dark:text-slate-100">{title}</h3>
     <span class:list={['shrink-0 text-xs px-2 py-0.5 rounded-full font-medium', badge.class]}>
       {badge.label}
     </span>
   </div>
-  <p class="mt-2 text-sm text-gray-600 line-clamp-3">{summary}</p>
+  <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 line-clamp-3">{summary}</p>
   {href && (
-    <a href={href} class="mt-3 inline-block text-sm font-medium text-lab-600 hover:text-lab-700">
+    <a href={href} class="mt-3 inline-block text-sm font-medium text-lab-600 dark:text-lab-400 hover:text-lab-700 dark:hover:text-lab-300 group-hover:font-semibold">
       Read more &rarr;
     </a>
   )}
