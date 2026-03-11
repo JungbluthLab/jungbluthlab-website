@@ -42,6 +42,7 @@ export function render(
   butterflies: Butterfly[],
   npcs: NPC[],
   npcDialogueIndex: Map<string, number>,
+  discoveredSet: Set<string>,
 ) {
   _interactionFlash = interactionFlash;
   const pal = PALETTES[era];
@@ -372,8 +373,16 @@ export function render(
   ctx.textAlign = 'right';
   ctx.fillText(hudText + ' found', V_WIDTH - 6, 14);
 
+  // Gold star when era is 100% complete
+  if (discoveredCount >= totalCount && totalCount > 0) {
+    ctx.fillStyle = '#FFD700';
+    ctx.font = '8px monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('\u2605', V_WIDTH - 80, 14);
+  }
+
   // ── Minimap ──
-  drawMinimap(ctx, player, buildings, cam);
+  drawMinimap(ctx, player, buildings, cam, discoveredSet, npcs, era);
 
   // ── Blit to display canvas ──
   displayCtx.imageSmoothingEnabled = false;

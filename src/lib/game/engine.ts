@@ -12,7 +12,7 @@ import {
   createButterflies, updateButterflies, type Butterfly,
 } from './wildlife';
 import { getVisibleNPCs, type NPC } from './npcs';
-import { showPopup, hidePopup, isPopupOpen, getDiscoveredCount, updateDiscoveryDisplay, setupPopupListeners } from './popup';
+import { showPopup, hidePopup, isPopupOpen, getDiscoveredCount, getDiscoveredSet, isEraComplete, updateDiscoveryDisplay, setupPopupListeners } from './popup';
 import { initRenderer, render } from './renderer';
 import { spawnDust, updateParticles } from './particles';
 import { initMinimap } from './minimap';
@@ -132,6 +132,14 @@ export function initGame() {
   setupPopupListeners(() => {
     if (isTourActive()) advanceTourStop();
   });
+
+  // Era completion overlay dismiss on click
+  const eraCompleteOverlay = document.getElementById('era-complete');
+  if (eraCompleteOverlay) {
+    eraCompleteOverlay.addEventListener('click', () => {
+      eraCompleteOverlay.style.display = 'none';
+    });
+  }
 
   // Setup era toggle buttons
   setupEraToggle();
@@ -268,6 +276,25 @@ function setupEraToggle() {
   }
 }
 
+function showEraCelebration(era: EraId, total: number) {
+  const overlay = document.getElementById('era-complete');
+  const textEl = document.getElementById('era-complete-text');
+  if (!overlay || !textEl) return;
+
+  const eraLabels: Record<EraId, string> = {
+    codfish: '1880s Codfish',
+    navy: '1940s Navy',
+    modern: 'Today',
+  };
+
+  textEl.textContent = `You discovered all ${total} locations in the ${eraLabels[era]} era!`;
+  overlay.style.display = 'flex';
+
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 4000);
+}
+
 function gameLoop() {
   if (!running) return;
 
@@ -287,6 +314,9 @@ function gameLoop() {
           if (opened) {
             interactionFlash = 15;
             updateDiscoveryDisplay(era, countForEra(era));
+            if (isEraComplete(era, countForEra(era))) {
+              showEraCelebration(era, countForEra(era));
+            }
           }
         }
       }
@@ -357,6 +387,9 @@ function gameLoop() {
     if (opened) {
       interactionFlash = 15;
       updateDiscoveryDisplay(era, countForEra(era));
+      if (isEraComplete(era, countForEra(era))) {
+        showEraCelebration(era, countForEra(era));
+      }
     }
   }
 
@@ -398,6 +431,7 @@ function gameLoop() {
   }
   lastNearNPC = currentNearNPC;
 
+  const discoveredSet = getDiscoveredSet(era);
   render(
     ctx, camera, map, trees, visibleBuildings,
     player, seagulls, nearBuilding, era,
@@ -407,6 +441,7 @@ function gameLoop() {
     fish, crabs, butterflies,
     visibleNPCs,
     npcDialogueIndex,
+    discoveredSet,
   );
 
   // Update DOM discovery counter
